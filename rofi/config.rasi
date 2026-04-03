@@ -1,0 +1,139 @@
+
+configuration {
+    modes:                      "drun,run,window";
+    show-icons:                 true;
+    display-drun:               "";
+    drun-display-format:        "{name}";
+    font:                       "JetBrainsMono Nerd Font 10";
+    /* Matikan fitur highlight pencocokan teks agar tidak ada warna biru */
+    show-match:                 false;
+}
+
+// @theme "/dev/null"
+
+* {
+    /* Gruvbox Dark Palette */
+    bg0:    #282828;
+    bg1:    #32302f; 
+    bg2:    #504945;
+    fg-gray: #928374;
+    fg-light: #ebdbb2;
+    accent: #fabd2f;
+
+    background-color:   transparent;
+    text-color:         @fg-gray;
+    margin:             0;
+    padding:            0;
+    spacing:            0;
+}
+
+window {
+    width:            40%;
+    height:           600px;
+    background-color: @bg0;
+    border:           2px;
+    border-color:     @bg2;
+    border-radius:    12px;
+}
+
+mainbox {
+    /* Layout Horizontal: Kiri (Menu) & Kanan (Gambar) */
+    orientation:        horizontal;
+    children:           [ "left-box", "imagebox" ];
+}
+
+/* KOTAK KIRI (Search + List) */
+left-box {
+    orientation:        vertical;
+    children:           [ "inputbar", "listview" ];
+    padding:            20px;
+    width:              60%;
+}
+
+inputbar {
+    background-color:   @bg1;
+    border-radius:      8px;
+    margin:             0 0 15px 0;
+    padding:            10px 15px;
+    /* Hanya panggil Prompt & Entry untuk membuang bintik biru (case-indicator) */
+    children:           [ prompt, entry ];
+    spacing:            0px;
+}
+
+prompt {
+    text-color:         @accent;
+    margin:             0 12px 0 0;
+    vertical-align:     0.5;
+}
+
+entry {
+    text-color:         @fg-light;
+    placeholder:        "Search...";
+    placeholder-color:  @fg-gray;
+    vertical-align:     0.5;
+}
+
+listview {
+    lines:              8;
+    columns:            1;
+    fixed-height:       true;
+    spacing:            5px;
+    border:             0px; /* Hapus garis separator */
+    scrollbar:          true;
+}
+
+/* KOTAK KANAN (Gambar Full) */
+imagebox {
+    /* GANTI PATH DI BAWAH INI DENGAN PATH GAMBAR ANDA */
+    background-image:    url("/home/johan/Pictures/me/New_Folder/christ_carrying_cross_2.jpg", height);
+    width:               20%; 
+    background-color:    @bg1;
+    border-radius:       0px 10px 10px 0px;
+    
+    /* Memastikan gambar mulai dari ujung ke ujung */
+    margin:              0px;
+    padding:             0px;
+}
+
+/* SCROLLBAR ABU-ABU GELAP */
+scrollbar {
+    width:              4px;
+    border:             0;
+    handle-width:       8px;
+    handle-color:       @fg-gray;
+    background-color:   @bg1;
+    margin:             0 0 0 10px;
+}
+
+/* LIST ITEM */
+element {
+    padding:            8px 12px;
+    spacing:            10px;
+    border-radius:      6px;
+}
+
+element normal.normal, element alternate.normal {
+    background-color:   transparent;
+    text-color:         @fg-gray;
+}
+
+element selected.normal {
+    background-color:   @bg2;
+    text-color:         @accent;
+}
+
+element-icon {
+    size:               24px;
+}
+
+element-text {
+    vertical-align:     0.5;
+    text-color:         inherit;
+    highlight:          none; /* Paksa hapus highlight biru pada teks */
+}
+
+/* MATIKAN SEMUA ELEMEN PENGGANGGU */
+case-indicator, num-filtered-rows, num-rows, textbox-num-sep {
+    enabled:            false;
+    display:            none;
+}

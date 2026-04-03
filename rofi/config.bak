@@ -1,0 +1,31 @@
+configuration {
+	modes: [ drun, combi ];
+	combi-modes: [ window, drun, run ];
+}
+
+@theme "gruvbox-dark"
+
+entry {
+	cursor-color: rgb(220,20,60);
+	cursor-width: 8px;
+	hide-cursor-on-empty: true;
+}
+
+element {
+	orientation: horizontal;
+	children: [ element-text, element-icon ];
+	spacing: 5px;
+}
+
+element-icon { 
+	size: 2.5em;
+}
+
+element-text {
+	vertical-align: 0.5;
+}
+
+
+
+
+
